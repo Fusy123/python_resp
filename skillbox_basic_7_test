@@ -1,0 +1,33 @@
+'''Задача 8. Замечательные числа
+Напишите программу, которая находит и выводит все двузначные числа, которые равны утроенному
+ произведению своих цифр. К таким относятся, например, 15 и 24.'''
+
+for n in range(10, 100):
+    if n == ((n % 10) * (n // 10) *3):
+        print(n)
+
+print ('-'*85)
+
+letters = ['a', 'a', 'b', 'c', 'd', 'd', 'a', 'c', 'd', '11']
+final_dict ={}
+for letter in letters:
+    if letter not in final_dict:
+        final_dict[letter] = []
+    final_dict[letter].append(letter)
+    print('Final_dict', final_dict)
+
+print ('-'*85)
+
+columns = ['name', 'age', 'gender', 'address', 'account_type']
+print('* Literals:', columns)
+columns = 'name age gender address account_type'.split()
+print('* Split with spaces:', columns)
+columns = 'name age gender address account_type'.split(',')
+print('* Split with commas:', columns)
+
+print ('-'*85)
+seq = [1, 2, 3, 4, 5, 6]
+results = list(map(lambda var: var * 2, seq))
+print(results)
+
+print ('-'*85)
