@@ -1,0 +1,60 @@
+'''Задача 10. Метод бутерброда
+Секретное агентство «Super-Secret-no» решило для шифрования переписки своих
+ сотрудников использовать «метод бутерброда». Сначала буквы слова нумеруются
+  в таком порядке: первая буква получает номер 1, последняя буква - номер 2,
+  вторая – номер 3, предпоследняя – номер 4, потом третья … и так для всех букв
+   (см. рисунок). Затем все буквы записываются в шифр в порядке своих номеров.
+   Например, слово «sandwich» зашифруется в «shacnidw».
+К сожалению, программист «Super-Secret-no», написал только программу шифрования
+и уволился. И теперь агенты не могут понять, что же они написали друг другу.
+Помогите им.
+Пример:
+Введите зашифрованное сообщение: shacnidw
+Расшифрованное сообщение: sandwich'''
+
+
+def decoding(code1):
+    global decode
+    decode = []
+    y = len(code1) - 1
+    mst = 1
+    for i in range(0, len(code1), 2):
+        decode.insert(mst, code1[i])
+        mst += 1
+    while y > 0:
+        if y % 2 == 1:
+            decode.insert(mst, code1[y])
+        mst += 1
+        y -= 1
+    decode = ''.join(decode)
+    return decode
+
+
+def coding(code2):
+    global decode
+    y = 1
+    decode = []
+    mst = 0
+    for i in range(0, (len(code2) // 2) + 1, 1):
+        decode.insert(mst, code2[i])
+        mst += 2
+    for i in range(len(code2) - 1, len(code2) // 2, -1):
+        decode.insert(y, code2[i])
+        y += 2
+    decode = ''.join(decode)
+    return decode
+
+
+while True:
+    algorithm = int(input('Выберите что делаем кодируем или раскодируем слово (1 - код/0 - декод): '))
+    if algorithm == 0:
+        code = input('Введите зашифрованное сообщение: ')
+        decoding(code)
+        break
+    elif algorithm == 1:
+        code = input('Введите что надо зашифровать: ')
+        coding(code)
+        break
+    else:
+        continue
+print(decode)
